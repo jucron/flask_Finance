@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+
+    <h2>Summary</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Name</th>
+                    <th>Shares</th>
+                    <th>Price</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="4"></td>
+                    <td>{{ total }}</td>
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for rows in summary %}
+                <tr>
+                    <td>{{ rows.symbol }}</td>
+                    <td>{{ rows.name }}</td>
+                    <td>{{ rows.shares }}</td>
+                    <td>{{ rows.price | usd }}</td>
+                    <td>{{ (rows.shares*rows.price) | usd }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+                <tr>
+                    <th>CASH</th>
+                    <td colspan="3"></td>
+                    <td>{{ balance }}</td>
+                </tr>
+        </table>
+
+{% endblock %}
